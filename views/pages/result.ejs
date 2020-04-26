@@ -1,0 +1,94 @@
+<%- include ('../partials/header') %>
+
+<div id="bigtry" class="alert alert-info" role="alert">
+    <strong>BMI Result:</strong>
+    Your Body-Mass-Index is:
+    <strong><%= (Math.round(bmi * 100) / 100) %></strong>
+</div>
+<br> 
+<br>
+<br>
+<div class="panel panel-default">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Male</th>
+            <th scope="col">Female</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">Underweight</th>
+            <td id="one" class="text-muted">under 20</td>
+            <td id="two" class="text-muted">under 19</td>
+        </tr>
+        <tr>
+            <th scope="row">Normal weight</th>
+            <td id="three" class="text-muted">20 - 25</td>
+            <td id="four" class="text-muted">19 - 24</td>
+        </tr>
+        <tr>
+            <th scope="row">Overweight</th>
+            <td id="five" class="text-muted">26 - 30</td>
+            <td id="six" class="text-muted">25 - 30</td>
+        </tr>
+        <tr>
+            <th scope="row">Obesity</th>
+            <td id="seven" class="text-muted">31 - 40</td>
+            <td id="eight" class="text-muted">31 - 40</td>
+        </tr>
+        <tr>
+            <th scope="row">strong obesity</th>
+            <td id="nine" class="text-muted">over 41</td>
+            <td id="ten" class="text-muted">over 41</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<%- include ('../partials/footer') %>
+
+<script>
+    var some = document.getElementById("bigtry");
+    if(<%= bmi %> < 19 || <%= bmi %> > 25){
+        some.classList.remove("alert-info");
+        some.classList.add("alert-danger");
+    } else {
+        some.classList.remove("alert-danger");
+        some.classList.add("alert-info");
+    }
+    
+    if(<%= bmi %> < 19){
+        document.getElementById("one").classList.remove("text-muted");
+        document.getElementById("one").classList.add("text-info");
+        document.getElementById("two").classList.remove("text-muted");
+        document.getElementById("two").classList.add("text-info");
+    } else if(<%= bmi %> >= 19 && <%= bmi %> < 20){
+        document.getElementById("four").classList.remove("text-muted");
+        document.getElementById("four").classList.add("text-info");
+        document.getElementById("one").classList.remove("text-muted");
+        document.getElementById("one").classList.add("text-info");
+    } else if(<%= bmi %> >= 25 && <%= bmi %> < 26){
+        document.getElementById("three").classList.remove("text-muted");
+        document.getElementById("three").classList.add("text-info");
+        document.getElementById("six").classList.remove("text-muted");
+        document.getElementById("six").classList.add("text-info");
+    } else if(<%= bmi %> > 19 && <%= bmi %> < 25){
+        document.getElementById("three").classList.remove("text-muted");
+        document.getElementById("three").classList.add("text-info");
+        document.getElementById("four").classList.remove("text-muted");
+        document.getElementById("four").classList.add("text-info");
+    } else if(<%= bmi %> > 26 && <%= bmi %> < 30){
+        document.getElementById("six").classList.remove("text-muted");
+        document.getElementById("six").classList.add("text-info");
+        document.getElementById("seven").classList.remove("text-muted");
+        document.getElementById("seven").classList.add("text-info");
+    } else if (<%= bmi %> > 41){
+        document.getElementById("nine").classList.remove("text-muted");
+        document.getElementById("nine").classList.add("text-info");
+        document.getElementById("ten").classList.remove("text-muted");
+        document.getElementById("ten").classList.add("text-info");
+    } 
+</script>
